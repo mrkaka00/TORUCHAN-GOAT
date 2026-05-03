@@ -5,163 +5,149 @@ const path = require("path");
 
 module.exports = {
   config: {
-    name: "uptime3",
-    aliases: ["up3","upt 3"],
-    version: "4.2",
-    author: "ARIFUL",
+    name: "up3",
+    aliases: ["upx","uptime3"],
+    version: "5.5",
+    author: "Hridoy",
     role: 0,
-    shortDescription: "Uptime Dashboard",
+    shortDescription: "Line UI Dashboard",
     category: "System",
     guide: "{pn}"
   },
 
   onStart: async function ({ message }) {
     try {
-      const width = 1200;
-      const height = 650;
+      const width = 1300;
+      const height = 700;
 
       const canvas = createCanvas(width, height);
       const ctx = canvas.getContext("2d");
 
-      ctx.patternQuality = "best";
-      ctx.quality = "best";
-      ctx.antialias = "subpixel";
-
-      // ✅ PURE BLACK BACKGROUND (UPDATED)
-      ctx.fillStyle = "#000000";
+      // ===== BACKGROUND =====
+      const bg = ctx.createLinearGradient(0, 0, width, height);
+      bg.addColorStop(0, "#0a0a0a");
+      bg.addColorStop(1, "#101820");
+      ctx.fillStyle = bg;
       ctx.fillRect(0, 0, width, height);
 
-      const overlay = ctx.createLinearGradient(0, 0, width, height);
-      overlay.addColorStop(0, "rgba(0,255,255,0.05)");
-      overlay.addColorStop(1, "rgba(0,0,0,0.9)");
-      ctx.fillStyle = overlay;
-      ctx.fillRect(0, 0, width, height);
-
-      const vignette = ctx.createRadialGradient(
-        width / 2,
-        height / 2,
-        200,
-        width / 2,
-        height / 2,
-        900
-      );
-      vignette.addColorStop(0, "rgba(0,0,0,0)");
-      vignette.addColorStop(1, "rgba(0,0,0,0.95)");
-      ctx.fillStyle = vignette;
-      ctx.fillRect(0, 0, width, height);
-
+      // particles
       for (let i = 0; i < 120; i++) {
-        ctx.fillStyle = "rgba(0,255,255,0.2)";
+        ctx.fillStyle = "rgba(0,255,255,0.08)";
         ctx.beginPath();
-        ctx.arc(
-          Math.random() * width,
-          Math.random() * height,
-          Math.random() * 2,
-          0,
-          Math.PI * 2
-        );
+        ctx.arc(Math.random()*width, Math.random()*height, Math.random()*2, 0, Math.PI*2);
         ctx.fill();
       }
 
-      const cpu = Math.floor(Math.random() * 50) + 30;
-      const ram = Math.floor(
-        ((os.totalmem() - os.freemem()) / os.totalmem()) * 100
-      );
-      const disk = Math.floor(Math.random() * 40) + 50;
+      // ===== SYSTEM DATA =====
+      const cpus = os.cpus();
+      let idle = 0, total = 0;
+
+      cpus.forEach(core => {
+        for (let t in core.times) total += core.times[t];
+        idle += core.times.idle;
+      });
+
+      const cpu = Math.floor(100 - (idle / total) * 100);
+      const ram = Math.floor((1 - os.freemem() / os.totalmem()) * 100);
+      const disk = Math.floor(Math.random() * 30) + 60;
 
       const uptime = process.uptime();
-
       const d = Math.floor(uptime / 86400);
       const h = Math.floor((uptime % 86400) / 3600);
       const m = Math.floor((uptime % 3600) / 60);
       const s = Math.floor(uptime % 60);
 
-      const ping = Math.floor(Math.random() * 100) + 100;
-
+      // ===== CENTER TITLE =====
+      ctx.fillStyle = "#00eaff";
+      ctx.font = "bold 52px Sans";
+      ctx.textAlign = "center";
       ctx.shadowColor = "#00eaff";
       ctx.shadowBlur = 25;
-      ctx.fillStyle = "#00eaff";
-      ctx.font = "bold 60px Sans";
-      ctx.fillText("TORU CHAN DASHBOARD", 360, 90);
+      ctx.fillText("⚡ TORU CHAN UPTIME ⚡", width / 2, 80);
       ctx.shadowBlur = 0;
 
-      function glassBox(x, y, w, h) {
+      // ===== GLASS BOX =====
+      function box(x, y, w, h) {
         ctx.beginPath();
         ctx.roundRect(x, y, w, h, 20);
-        ctx.fillStyle = "rgba(255,255,255,0.05)";
+        ctx.fillStyle = "rgba(255,255,255,0.04)";
         ctx.fill();
 
         ctx.strokeStyle = "rgba(0,255,255,0.25)";
         ctx.stroke();
       }
 
-      function bar(x, y, w, percent, color, label) {
+      // ===== LINE BAR =====
+      function lineBar(x, y, w, percent, label) {
+        const grad = ctx.createLinearGradient(x, y, x + w, y);
+        grad.addColorStop(0, "#00eaff");
+        grad.addColorStop(1, "#00ff9c");
+
+        // background line
         ctx.beginPath();
-        ctx.roundRect(x, y, w, 35, 20);
-        ctx.fillStyle = "rgba(0,0,0,0.6)";
+        ctx.roundRect(x, y, w, 18, 10);
+        ctx.fillStyle = "rgba(255,255,255,0.08)";
         ctx.fill();
 
-        ctx.shadowColor = color;
-        ctx.shadowBlur = 20;
-        ctx.fillStyle = color;
+        // progress
+        ctx.shadowColor = "#00eaff";
+        ctx.shadowBlur = 15;
+        ctx.fillStyle = grad;
         ctx.beginPath();
-        ctx.roundRect(x, y, (w * percent) / 100, 35, 20);
+        ctx.roundRect(x, y, (w * percent) / 100, 18, 10);
         ctx.fill();
         ctx.shadowBlur = 0;
 
+        // text
         ctx.fillStyle = "#fff";
-        ctx.font = "22px Sans";
-        ctx.fillText(label, x, y - 12);
+        ctx.font = "20px Sans";
+        ctx.fillText(label, x, y - 10);
 
-        ctx.fillText(percent + "%", x + w - 70, y + 25);
+        ctx.fillText(percent + "%", x + w - 60, y + 15);
       }
 
-      glassBox(40, 140, 300, 360);
+      // ===== LEFT PANEL =====
+      box(50, 140, 320, 400);
 
+      ctx.textAlign = "left";
       ctx.fillStyle = "#00eaff";
-      ctx.font = "28px Sans";
-      ctx.fillText("SYSTEM INFO", 80, 190);
+      ctx.font = "26px Sans";
+      ctx.fillText("SYSTEM INFO", 90, 190);
 
       ctx.fillStyle = "#ffffff";
       ctx.font = "22px Sans";
-      ctx.fillText("CPU : " + cpu + "%", 80, 240);
-      ctx.fillText("RAM : " + ram + "%", 80, 280);
-      ctx.fillText("DISK : " + disk + "%", 80, 320);
-      ctx.fillText("OS : " + os.platform(), 80, 360);
+      ctx.fillText("OS: " + os.platform(), 90, 240);
+      ctx.fillText("CPU: " + cpu + "%", 90, 280);
+      ctx.fillText("RAM: " + ram + "%", 90, 320);
 
       ctx.fillStyle = "#00ff9c";
-      ctx.font = "24px Sans";
-      ctx.fillText("UPTIME", 80, 410);
+      ctx.fillText("UPTIME", 90, 380);
+      ctx.fillText(`${d}d ${h}h ${m}m ${s}s`, 90, 420);
 
-      // ✅ UPDATED DISPLAY WITH DAY
-      ctx.fillText(`${d}d ${h}h ${m}m ${s}s`, 80, 450);
+      // ===== RIGHT PANEL =====
+      box(400, 160, 820, 350);
 
-      ctx.fillStyle = "#00eaff";
-      ctx.fillText(`PING: ${ping}ms`, 80, 490);
+      lineBar(450, 240, 700, cpu, "CPU Usage");
+      lineBar(450, 320, 700, ram, "RAM Usage");
+      lineBar(450, 400, 700, disk, "Disk Usage");
 
-      glassBox(380, 160, 750, 90);
-      glassBox(380, 280, 750, 90);
-      glassBox(380, 400, 750, 90);
-
-      bar(420, 210, 650, cpu, "#00eaff", "CPU Usage");
-      bar(420, 330, 650, ram, "#ff6ec7", "RAM Usage");
-      bar(420, 450, 650, disk, "#4facfe", "Disk Usage");
-
+      // ===== FOOTER =====
+      ctx.textAlign = "center";
       ctx.fillStyle = "#00ff9c";
-      ctx.font = "26px Sans";
-      ctx.fillText("Server Disting Disting ⚡", 420, 580);
+      ctx.font = "22px Sans";
+      ctx.fillText("⚡ Hridoy's Ultra Engine • Performance Mode", width / 2, 640);
 
-      const filePath = path.join(__dirname, "uptime_v4_bg.png");
-      fs.writeFileSync(filePath, canvas.toBuffer("image/png"));
+      const filePath = path.join(__dirname, "uptime_line_pro.png");
+      fs.writeFileSync(filePath, canvas.toBuffer());
 
       return message.reply({
-        body: "",
+        body: "UI Dashboard Ready!",
         attachment: fs.createReadStream(filePath)
       });
 
-    } catch (err) {
-      console.log(err);
-      message.reply("❌ Error: " + err.message);
+    } catch (e) {
+      console.log(e);
+      message.reply("Error: " + e.message);
     }
   }
 };
