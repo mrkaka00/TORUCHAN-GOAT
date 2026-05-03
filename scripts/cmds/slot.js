@@ -4,9 +4,9 @@ module.exports = {
   config: {
     name: "slot",
     version: "9.0",
-    author: "FARHAN-KHAN",
+    author: "Hridoy",
     role: 0,
-    category: "game",
+    category: "Game",
     shortDescription: "🎰 Animated Slot (Final Stable)"
   },
 
