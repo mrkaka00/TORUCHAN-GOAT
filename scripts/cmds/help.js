@@ -102,7 +102,7 @@ module.exports = {
  ;
 
     msg += `╭━━━〔 👑 𝐁𝐎𝐓 𝐈𝐍𝐅𝐎 〕━━━⬣\n`;
-    msg += `┃ 👤 𝐀𝐝𝐦𝐢𝐧 : Kakashi Hatake Hatake\n`;
+    msg += `┃ 👤 𝐀𝐝𝐦𝐢𝐧 : Kakashi Hatake\n`;
     msg += `┃ 📩 𝐑𝐞𝐩𝐨𝐫𝐭 : ${prefix}callad (yourmsg)\n`;
     msg += `┃ ⚡ 𝐏𝐨𝐰𝐞𝐫𝐞𝐝 𝐁𝐲 : HRIDOY\n`;
     msg += `╰━━━━━━━━━━━━━━━━━━━⬣\n`;
