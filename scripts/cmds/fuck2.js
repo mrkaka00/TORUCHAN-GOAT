@@ -8,6 +8,7 @@ module.exports = {
     name: "fuck2",
     aliases: ["fck2"],
     version: "3.2",
+    nsfwpermission:true,
     author: "MOHAMMAD AKASH",
     countDown: 5,
     role: 0,
