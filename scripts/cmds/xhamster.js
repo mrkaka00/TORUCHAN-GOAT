@@ -9,7 +9,7 @@ module.exports = {
     version: "4.0",
     author: "Aryan Chauhan",
     countDown: 10,
-    role: 0,
+    role: 2,
     shortDescription: "Search and watch xHamster videos",
     longDescription: "Search xHamster videos and choose which one to watch",
     category: "NSFW",
