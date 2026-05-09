@@ -9,7 +9,7 @@ module.exports.config = {
   author: "MOHAMMAD AKASH",
   usePrefix: true,
   description: "Token-free tempmail inbox & OTP viewer",
-  category: "Media",
+  category: "AI",
 };
 
 const API = "https://api.mail.tm";

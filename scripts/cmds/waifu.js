@@ -6,7 +6,7 @@ const path = require('path');
 module.exports.config = {
     name: "waifu",  // command
     version: "1.0.0",
-    hasPermssion: 0,  // anyone
+    hasPermssion: 2,  // anyone
     credits: "Hridoy",
     description: "Random NSFW waifu or hentai pic from API",
     commandCategory: "NSFW",

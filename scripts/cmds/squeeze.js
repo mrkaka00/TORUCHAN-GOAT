@@ -6,7 +6,7 @@ module.exports = {
   config: {
     name: "squeeze",
     version: "1.0.2",
-    hasPermssion: 0,
+    hasPermssion: 2,
     credits: "Hridoy",
     description: "Slap the friend you mention",
     category: "NSFW",

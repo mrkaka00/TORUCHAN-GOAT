@@ -20,7 +20,7 @@ module.exports = {
                         en: "Search high-quality images from Unsplash",
                         vi: "Tìm kiếm hình ảnh chất lượng cao từ Unsplash"
                 },
-                category: "Media",
+                category: "AI",
                 guide: {
                         bn: '   {pn} <নাম> - <পরিমাণ>: ছবি সার্চ করুন (যেমন: {pn} cat - 5)',
                         en: '   {pn} <query> - <number>: Search images (Ex: {pn} cat - 5)',
