@@ -1,4 +1,4 @@
-Cmd install kola.js const axios = require("axios");
+const axios = require("axios");
 const fs = require("fs-extra");
 const path = require("path");
 const { createCanvas, loadImage } = require("canvas");
@@ -7,7 +7,7 @@ module.exports = {
   config: {
     name: "kola",
     version: "3.0.0",
-    author: "Hridoy", 
+    author: "Hridoy", // change if needed
     countDown: 5,
     role: 0,
     category: "Tag Fun",

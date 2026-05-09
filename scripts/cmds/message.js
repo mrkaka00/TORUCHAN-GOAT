@@ -68,7 +68,7 @@ module.exports = {
     const title = "📣 ANNOUNCEMENT FROM KAKASHI";
 
     const msg = input
-      ? `╭[ ${title} ]╮\n\n${input}\n\n╰────────────────────╯`
+      ? `[ ${title} ]\n\n${input}\n\n───────────────────────`
       : "";
 
     try {

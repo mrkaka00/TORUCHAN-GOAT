@@ -4,7 +4,7 @@ const axios = require("axios");
 
 module.exports = {
   config: {
-    name: "tmp3",
+    name: "mp3",
  aliases: ["convermp3", "convertmp3"],
     version: "1.0.0",
     role: 0,

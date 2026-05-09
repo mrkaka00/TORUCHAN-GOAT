@@ -1,7 +1,7 @@
 module.exports.config = {
   name: "npic",
   version: "1.0.0",
-  hasPermssion: 0,
+  hasPermssion: 2,
   credits: "Hridoy",
   description: "Projec M4a.",
   commandCategory: "NSFW",

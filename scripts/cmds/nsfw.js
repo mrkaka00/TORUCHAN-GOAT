@@ -7,7 +7,7 @@ module.exports = {
     version: "1.1",
     author: "Hridoy",
     countDown: 10,
-    role: 0,  // 0 = সবাই, চাইলে 1 করে admin only করো
+    role: 2,  // 0 = সবাই, চাইলে 1 করে admin only করো
     shortDescription: "Interactive NSFW pic selector",
     longDescription: "NSFW category list দেখায়, তুমি reply করে category select করলে pic send করে। Nights API use করে।",
     category: "NSFW",

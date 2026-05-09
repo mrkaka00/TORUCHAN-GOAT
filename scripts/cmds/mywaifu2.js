@@ -6,7 +6,7 @@ const path = require('path');
 module.exports.config = {
     name: "mywaifu2",
     version: "1.2.0",
-    hasPermssion: 0,
+    hasPermssion: 2,
     credits: "Hridoy",
     description: "Random anime pic from waifu.pics (waifu/neko/etc) - random if no type given",
     commandCategory: "NSFW",

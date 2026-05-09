@@ -7,7 +7,7 @@ module.exports = {
     version: "1.0",
     author: "Hridoy",
     countDown: 8,         // cooldown to avoid API limit
-    role: 0,              // 0 = সবাই, 1 = admin only
+    role: 2,              // 0 = সবাই, 1 = admin only
     shortDescription: "Random ass pic from Nights API",
     longDescription: "NSFW image send করে।",
     category: "NSFW",

@@ -35,7 +35,7 @@ module.exports = {
 
     // ================= DOT PREFIX =================
     if (event.body && event.body.trim() === botPrefix) {
-      return message.reply("");
+      return message.reply("🎀\nιт'ѕ ʝυѕт му ρяєƒιχ");
     }
 
     // ================= SET PREFIX =================
