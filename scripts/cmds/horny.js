@@ -14,7 +14,7 @@ module.exports = {
                 version: "1.7",
                 author: "MahMUD",
                 countDown: 10,
-                role: 0,
+                role: 2,
                 description: {
                         bn: "রেন্ডম হর্নি ভিডিও দেখুন (১৮+)",
                         en: "Watch random horny videos (18+)"

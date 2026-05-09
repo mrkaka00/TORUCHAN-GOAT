@@ -30,12 +30,12 @@ module.exports = {
 
       if (commandArgs === "on") {
         isEmojiVoiceEnabled = true;
-        return message.reply("✅ Emoji Voice System চালু করা হয়েছে।\nএখন ইমোজি পাঠালে ভয়েস আসবে 😍");
+        return message.reply("✅ Emoji Voice System চালু করা হয়েছে।");
       }
 
       if (commandArgs === "off") {
         isEmojiVoiceEnabled = false;
-        return message.reply("❌ Emoji Voice System বন্ধ করা হয়েছে।\nইমোজি দিয়ে আর ভয়েস আসবে না।");
+        return message.reply("❌ Emoji Voice System বন্ধ করা হয়েছে।");
       }
 
       // Help message

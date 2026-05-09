@@ -5,7 +5,7 @@ module.exports = {
     name: "hnekos",
     version: "1.0.0",
     author: "Hridoy",
-    role: 0,
+    role: 2,
     shortDescription: "Random anime image",
     category: "NSFW",
     guide: "{pn}",

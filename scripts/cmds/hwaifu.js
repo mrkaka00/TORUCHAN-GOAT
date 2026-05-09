@@ -8,7 +8,7 @@ module.exports = {
     version: "1.1",
     author: "Hridoy",
     countDown: 5,
-    role: 0,
+    role: 2,
     shortDescription: "Random NSFW Waifu",
     longDescription: "Get random NSFW waifu/hentai/neko image",
     category: "NSFW"

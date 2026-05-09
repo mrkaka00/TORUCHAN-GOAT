@@ -7,6 +7,7 @@ module.exports = {
     name: "hana",
     version: "1.0",
     author: "Zed",
+    role: 0,
     countDown: 3,
     category: "NSFW",
   },

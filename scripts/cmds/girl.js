@@ -5,7 +5,7 @@ module.exports = {
     name: "girl",
     version: "1.0.1",
     author: "Hridoy",
-    role: 0,
+    role: 2,
     shortDescription: "Random GF image/video",
     category: "NSFW",
     guide: "{pn}",

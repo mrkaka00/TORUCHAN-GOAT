@@ -10,7 +10,7 @@ module.exports = {
     version: "0.0.1",
     author: "ArYAN",
     countDown: 15,
-    role: 0,
+    role: 2,
     category: "NSFW"
   },
 

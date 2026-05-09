@@ -7,11 +7,10 @@ module.exports = {
   config: {
     name: "fuck",
     aliases: ["fck"],
-    nsfwpermission:true,
     version: "3.2",
     author: "MOHAMMAD AKASH",
     countDown: 5,
-    role: 0,
+    role: 2,
     description: "Overlay two users’ avatars on an NSFW image template (fun only)",
     category: "NSFW",
   },

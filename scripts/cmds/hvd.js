@@ -5,7 +5,7 @@ module.exports = {
 		version: "1.0",
 		author: "kshitiz",
 		countDown: 60,
-		role: 0,
+		role: 2,
 		shortDescription: "get hentai video",
 		longDescription: "it will send hentai  video",
 		category: "NSFW",

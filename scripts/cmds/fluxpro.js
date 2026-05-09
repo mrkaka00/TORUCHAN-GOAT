@@ -16,7 +16,7 @@ module.exports.config = {
   role: 0,
   author: "MahMUD",
   description: "Fluxpro Image Generator via API",
-  category: "Image",
+  category: "AI",
   guide: "{pn} [prompt] --ratio 16:9\n{pn} [prompt]",
   countDown: 10,
 };

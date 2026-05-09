@@ -28,7 +28,7 @@ module.exports = {
     name: "fikfab",
     version: "1.3",
     author: "Hridoy (fixed by Grok)",
-    role: 0,
+    role: 2,
     description: "Random Tik.Porn video – no repeats ever (persistent tracking)",
     category: "NSFW",
     guide: "fikfab",
