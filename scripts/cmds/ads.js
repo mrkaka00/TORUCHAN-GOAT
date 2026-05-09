@@ -20,7 +20,7 @@ module.exports = {
                         en: "Create an advertisement (Ad) effect with someone's photo",
                         vi: "Tạo hiệu ứng quảng cáo (Ad) với ảnh của ai đó"
                 },
-                category: "Image",
+                category: "Tag Fun",
                 guide: {
                         bn: '   {pn} <@tag>: কাউকে ট্যাগ করে অ্যাড ইফেক্ট দিন'
                                 + '\n   {pn} <uid>: UID দিয়ে ইফেক্ট তৈরি করুন'

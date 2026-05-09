@@ -4,7 +4,7 @@ module.exports.config = {
     hasPermssion: 0,
     credits: "Hridoy",
     description: "random dp",
-    commandCategory: "Image",
+    category: "Image",
     usages: "send message",
     cooldowns: 5
 };

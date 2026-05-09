@@ -18,7 +18,7 @@ module.exports = {
                         en: "Get random anime couple profile pictures",
                         vi: "Lấy ảnh đại diện cặp đôi anime ngẫu nhiên"
                 },
-                category: "Media",
+                category: "Image",
                 guide: {
                         bn: '   {pn}: র‍্যান্ডম এনিমে সিডিপি পেতে ব্যবহার করুন',
                         en: '   {pn}: Use to get random anime cdp',

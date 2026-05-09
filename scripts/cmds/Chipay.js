@@ -12,7 +12,7 @@ module.exports = {
     countDown: 5,
     role: 0,
     shortDescription: "Fun command with image and stylish caption",
-    category: "fun",
+    category: "Tag Fun",
     guide: { en: "{pn} @mention or reply" }
   },
 
