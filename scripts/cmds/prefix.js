@@ -35,28 +35,53 @@ module.exports = {
 
     // ================= DOT PREFIX =================
     if (event.body && event.body.trim() === botPrefix) {
-      return message.reply("");
+      return message.reply("🎀\nιт'ѕ ʝυѕт му ρяєƒιχ");
     }
 
     // ================= SET PREFIX =================
     if (args && args[0] === "set") {
+
+      if (event.isGroup) {
+        const threadInfo = await api.getThreadInfo(event.threadID);
+
+        const isAdmin = threadInfo.adminIDs.some(
+          item => item.id == event.senderID
+        );
+
+        if (!isAdmin) {
+          return message.reply("❌ | Only group admins can change prefix.");
+        }
+      }
+
       const newPrefix = args[1];
 
       if (!newPrefix) {
         return message.reply("❌ | Example: prefix set !");
       }
 
-      setPrefix(event.threadID, newPrefix);
-      global.GoatBot.config.prefix = newPrefix;
+      if (event.isGroup) {
+        setPrefix(event.threadID, newPrefix);
+      } else {
+        global.GoatBot.config.prefix = newPrefix;
+      }
 
-      return message.reply(`✅ Prefix Changed Successfully!\nNew Prefix: ${newPrefix}`);
+      return message.reply(
+        `✅ Prefix Changed Successfully!\nNew Prefix: ${newPrefix}`
+      );
     }
 
     // ================= INFO =================
-    const ping = Date.now() - event.timestamp;
-    const day = new Date().toLocaleString("en-US", { weekday: "long" });
+    const ping = event.timestamp
+      ? Date.now() - event.timestamp
+      : 0;
 
-    const BOTNAME = global.GoatBot.config.nickNameBot || "KakashiBot";
+    const day = new Date().toLocaleString("en-US", {
+      weekday: "long"
+    });
+
+    const BOTNAME =
+      global.GoatBot.config.nickNameBot || "KakashiBot";
+
     const BOTPREFIX = botPrefix;
     const GROUPPREFIX = groupPrefix;
 
@@ -64,30 +89,30 @@ module.exports = {
     const loadingSets = [
 
       [
-        "𝐋𝐨𝐚𝐝𝐢𝐧𝐠 𝐏𝐫𝐞𝐟𝐢𝐱...\n▰▱▱▱▱▱▱▱▱▱ 10%",
-        "𝐋𝐨𝐚𝐝𝐢𝐧𝐠 𝐏𝐫𝐞𝐟𝐢𝐱...\n▰▰▰▱▱▱▱▱▱▱ 30%",
-        "𝐋𝐨𝐚𝐝𝐢𝐧𝐠 𝐏𝐫𝐞𝐟𝐢𝐱...\n▰▰▰▰▰▱▱▱▱▱ 50%",
-        "𝐋𝐨𝐚𝐝𝐢𝐧𝐠 𝐏𝐫𝐞𝐟𝐢𝐱...\n▰▰▰▰▰▰▰▱▱▱ 70%",
-        "𝐋𝐨𝐚𝐝𝐢𝐧𝐠 𝐏𝐫𝐞𝐟𝐢𝐱...\n▰▰▰▰▰▰▰▰▰▱ 90%",
-        "𝐋𝐨𝐚𝐝𝐢𝐧𝐠 𝐏𝐫𝐞𝐟𝐢𝐱...\n▰▰▰▰▰▰▰▰▰▰ 100%"
+        "𝐋𝐨𝐚𝐝𝐢𝐧𝐠...\n▰▱▱▱▱▱▱▱▱▱ 10%",
+        "𝐋𝐨𝐚𝐝𝐢𝐧𝐠...\n▰▰▰▱▱▱▱▱▱▱ 30%",
+        "𝐋𝐨𝐚𝐝𝐢𝐧𝐠...\n▰▰▰▰▰▱▱▱▱▱ 50%",
+        "𝐋𝐨𝐚𝐝𝐢𝐧𝐠...\n▰▰▰▰▰▰▰▱▱▱ 70%",
+        "𝐋𝐨𝐚𝐝𝐢𝐧𝐠...\n▰▰▰▰▰▰▰▰▰▱ 90%",
+        "𝐋𝐨𝐚𝐝𝐢𝐧𝐠...\n▰▰▰▰▰▰▰▰▰▰ 100%"
       ],
 
       [
-        "𝘓𝘰𝘢𝘥𝘪𝘯𝘨 𝘗𝘳𝘦𝘧𝘪𝘹...\n[■□□□□□□□□□] 10%",
-        "𝘓𝘰𝘢𝘥𝘪𝘯𝘨 𝘗𝘳𝘦𝘧𝘪𝘹...\n[■■■□□□□□□□] 30%",
-        "𝘓𝘰𝘢𝘥𝘪𝘯𝘨 𝘗𝘳𝘦𝘧𝘪𝘹...\n[■■■■■□□□□□] 50%",
-        "𝘓𝘰𝘢𝘥𝘪𝘯𝘨 𝘗𝘳𝘦𝘧𝘪𝘹...\n[■■■■■■■□□□] 70%",
-        "𝘓𝘰𝘢𝘥𝘪𝘯𝘨 𝘗𝘳𝘦𝘧𝘪𝘹...\n[■■■■■■■■■□] 90%",
-        "𝘓𝘰𝘢𝘥𝘪𝘯𝘨 𝘗𝘳𝘦𝘧𝘪𝘹...\n[■■■■■■■■■■] 100%"
+        "Loading...\n[■□□□□□□□□□] 10%",
+        "Loading...\n[■■■□□□□□□□] 30%",
+        "Loading...\n[■■■■■□□□□□] 50%",
+        "Loading...\n[■■■■■■■□□□] 70%",
+        "Loading...\n[■■■■■■■■■□] 90%",
+        "Loading...\n[■■■■■■■■■■] 100%"
       ],
 
       [
-        "𝐿𝑂𝐴𝐷𝐼𝑁𝐺 𝑃𝑅𝐸𝐹𝐼𝑋...\n◉□□□□□□□□□ 10%",
-        "𝐿𝑂𝐴𝐷𝐼𝑁𝐺 𝑃𝑅𝐸𝐹𝐼𝑋...\n◉◉◉□□□□□□□ 30%",
-        "𝐿𝑂𝐴𝐷𝐼𝑁𝐺 𝑃𝑅𝐸𝐹𝐼𝑋...\n◉◉◉◉◉□□□□□ 50%",
-        "𝐿𝑂𝐴𝐷𝐼𝑁𝐺 𝑃𝑅𝐸𝐹𝐼𝑋...\n◉◉◉◉◉◉◉□□□ 70%",
-        "𝐿𝑂𝐴𝐷𝐼𝑁𝐺 𝑃𝑅𝐸𝐹𝐼𝑋...\n◉◉◉◉◉◉◉◉◉□ 90%",
-        "𝐿𝑂𝐴𝐷𝐼𝑁𝐺 𝑃𝑅𝐸𝐹𝐼𝑋...\n◉◉◉◉◉◉◉◉◉◉ 100%"
+        "Loading...\n◉□□□□□□□□□ 10%",
+        "Loading...\n◉◉◉□□□□□□□ 30%",
+        "Loading...\n◉◉◉◉◉□□□□□ 50%",
+        "Loading...\n◉◉◉◉◉◉◉□□□ 70%",
+        "Loading...\n◉◉◉◉◉◉◉◉◉□ 90%",
+        "Loading...\n◉◉◉◉◉◉◉◉◉◉ 100%"
       ]
 
     ];
@@ -143,61 +168,132 @@ Bot Name: ${BOTNAME}`
     ];
 
     // ================= RANDOM =================
-    const randomLoading = loadingSets[Math.floor(Math.random() * loadingSets.length)];
-    const randomGif = gifs[Math.floor(Math.random() * gifs.length)];
-    const randomText = textFrames[Math.floor(Math.random() * textFrames.length)];
+    const randomLoading =
+      loadingSets[Math.floor(Math.random() * loadingSets.length)];
+
+    const randomGif =
+      gifs[Math.floor(Math.random() * gifs.length)];
+
+    const randomText =
+      textFrames[Math.floor(Math.random() * textFrames.length)];
 
     // ================= LOADING ANIMATION =================
     const msg = await message.reply(randomLoading[0]);
 
     for (let i = 1; i < randomLoading.length; i++) {
+
       await new Promise(r => setTimeout(r, 1000));
-      api.editMessage(randomLoading[i], msg.messageID);
+
+      try {
+        api.editMessage(randomLoading[i], msg.messageID);
+      } catch (e) {}
     }
 
     await new Promise(r => setTimeout(r, 500));
-    api.unsendMessage(msg.messageID);
+
+    try {
+      api.unsendMessage(msg.messageID);
+    } catch (e) {}
 
     // ================= GIF SEND =================
     const cacheFolder = path.join(__dirname, "cache");
-    if (!fs.existsSync(cacheFolder)) fs.mkdirSync(cacheFolder);
+
+    if (!fs.existsSync(cacheFolder)) {
+      fs.mkdirSync(cacheFolder);
+    }
 
     const fileName = path.basename(randomGif);
     const filePath = path.join(cacheFolder, fileName);
 
-    if (!fs.existsSync(filePath)) {
-      await new Promise((resolve, reject) => {
-        const file = fs.createWriteStream(filePath);
-        https.get(randomGif, res => {
-          res.pipe(file);
-          file.on("finish", () => file.close(resolve));
-        }).on("error", reject);
-      });
+    try {
+
+      if (!fs.existsSync(filePath)) {
+
+        await new Promise((resolve, reject) => {
+
+          const file = fs.createWriteStream(filePath);
+
+          https.get(randomGif, res => {
+
+            if (res.statusCode !== 200) {
+              return reject(
+                new Error("Failed to download gif")
+              );
+            }
+
+            res.pipe(file);
+
+            file.on("finish", () => {
+              file.close(resolve);
+            });
+
+          }).on("error", err => {
+
+            fs.unlink(filePath, () => {});
+            reject(err);
+
+          });
+
+        });
+
+      }
+
+      return api.sendMessage({
+        body: randomText,
+        attachment: fs.createReadStream(filePath)
+      }, event.threadID);
+
+    } catch (err) {
+
+      return message.reply(
+        `${randomText}\n\n⚠️ GIF load failed.`
+      );
+
     }
 
-    api.sendMessage({
-      body: randomText,
-      attachment: fs.createReadStream(filePath)
-    }, event.threadID);
   },
 
   onChat: async function ({ event, message, api }) {
+
     if (!event.body) return;
 
     const body = event.body.trim();
 
     if (body === "prefix") {
-      return this.onStart({ message, event, api, args: [] });
+      return this.onStart({
+        message,
+        event,
+        api,
+        args: []
+      });
     }
 
     if (body.startsWith("prefix set")) {
+
       const args = body.split(" ");
-      return this.onStart({ message, event, api, args });
+
+      return this.onStart({
+        message,
+        event,
+        api,
+        args
+      });
     }
 
-    // 🔥 শুধু "." দিলে trigger
-    if (body === global.GoatBot.config.prefix) {
-      return this.onStart({ message, event, api, args: [] });
+    // 🔥 শুধু prefix দিলে trigger
+    const currentPrefix =
+      global.GoatBot.config.prefix || ".";
+
+    if (body === currentPrefix) {
+
+      return this.onStart({
+        message,
+        event,
+        api,
+        args: []
+      });
+
     }
+
   }
 };
